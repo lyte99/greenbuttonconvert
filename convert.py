@@ -3,8 +3,8 @@ import csv
 from datetime import datetime
 
 # File paths
-input_file = '/mnt/data/XCEL_Electric_15_Minute_01-02-2025_01-03-2025.xml'
-output_file = '/mnt/data/processed_readings.csv'
+input_file = 'input.xml'
+output_file = 'processed_readings.csv'
 
 # Parse the XML file
 namespace = {'espi': 'http://naesb.org/espi'}
