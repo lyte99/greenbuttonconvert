@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 import csv
-from datetime import datetime
+from datetime import datetime, timezone
 
 # File paths
 input_file = 'input.xml'
@@ -25,11 +25,11 @@ with open(output_file, mode='w', newline='') as csvfile:
         value = interval_reading.find("espi:value", namespace).text
 
         # Convert start_time from UNIX timestamp to UTC datetime
-        utc_datetime = datetime.utcfromtimestamp(int(start_time)).isoformat()
+        utc_datetime = datetime.fromtimestamp(int(start_time), tz=timezone.utc).isoformat()
 
         # Convert cost and value to correct units
         cost = float(cost) / 100.0
-        value = float(value) / 100000.0
+        value = float(value) / 1000000.0  #its Watt hours with some large 0's at the end.
 
         # Write row to CSV
         csv_writer.writerow([utc_datetime, duration, cost, value])
